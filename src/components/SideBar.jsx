@@ -1,4 +1,3 @@
-import '/src/Home.css'
 import Button from '@mui/material/Button'
 
 function SideBar() {

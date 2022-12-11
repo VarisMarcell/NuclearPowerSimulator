@@ -1,4 +1,3 @@
-import './Home.css'
 
 function TopBar() {
     return (
@@ -6,6 +5,7 @@ function TopBar() {
             <div className='name'>
                 
                 <input type="textbox" placeholder="Plant Name" className='nameText' />
+                <span className="nameUnderline"></span>
             </div>
         </div>
     )
