@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-    const [data, setData] = useState({reactors: [], plant_name: ""})
+    const [data, setData] = useState({ reactors: [], plant_name: "" })
 
     const apiKey = "eb800069a59bb6c8" // My (Sam's) API Key
 
@@ -31,15 +31,11 @@ function App() {
 
     return (
         <div className="App">
-            <div className="reactorNames">
-                { data.reactors.length > 0 && 
-                data.reactors.map((reactor) => {
-                return <p>{ reactor.name }</p>
-                })}
-            </div>
+            
             <div className="logs">
                 Console
             </div>
+
 
         </div>
     )

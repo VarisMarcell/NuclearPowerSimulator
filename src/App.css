@@ -1,18 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
-#root {
-  text-align: center;
-  font-family: 'Roboto Condensed', sans-serif;
-
-  --thin: 400;
-  --thicc: 700;
-
-  --darkBlue: #0B3954;
-  --lightBlue: #BFD7EA;
-}
 
 .App {
+  bottom: 0;
   margin: 0;
   padding: 0;
   display: flex;
@@ -24,14 +15,6 @@
   gap: 3%;
 }
 
-.reactorNames {
-  width: 40%;
-  height: 25%;
-  background-color: var(--darkBlue);
-  border-radius: 15px;
-  font-weight: var(--thicc);
-  font-size: 2.5vh;
-}
 
 .logs {
   border-radius: 15px;
@@ -41,4 +24,9 @@
   font-family: 'Roboto Mono', sans-serif;
   font-weight: var(--thin);
   font-size: 2vh;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -1,5 +1,20 @@
 :root {
-  background-color: #242424;
-  color: white;
-  font-family: sans-serif;
+  background: linear-gradient(#395160, #152128);
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+
+  --thin: 400;
+  --thicc: 700;
+
+  --darkBlue: #0B3954;
+  --lightBlue: #BFD7EA;
+
+  margin: 0;
+  padding: 0;
+
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
 }
