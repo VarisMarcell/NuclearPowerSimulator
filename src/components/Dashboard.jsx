@@ -13,6 +13,7 @@ const Dashboard = () => {
         logs: [],
     })
 
+    const [avgTemp, setAvgTemp] = useState(22.22)
     const [avgTemps, setAvgTemps] = useState([])
 
     const fetchData = async () => {
@@ -63,6 +64,8 @@ const Dashboard = () => {
             return accumulator + reactor.temperature.amount
         }, 0) / jsonData.reactors.length
 
+        setAvgTemp(averageTemp)
+
         setAvgTemps(prevAvgTemps => {
             return [...prevAvgTemps, averageTemp]
         })
@@ -86,6 +89,27 @@ const Dashboard = () => {
                 <SideBar />
                 <>
                     <section className="dashboard">
+                        <div className="dashboardData">
+                            <div className="dashDataTop">
+                                <div className="dashTempDisplay">
+                                    <div className="dashTempLine"></div>
+                                    <div className="dashTempDisplay1">
+                                        <div className="dashTempTitle">
+                                            <p>Average Temperature</p>
+                                        </div>
+                                        <div className="dashTempData">
+                                            { avgTemp.toFixed(2) } {`°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()}`}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="avgTempChart">
+                                    <LineChart data={avgTemps} maxLength={300} title={`Average Reactor Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} xAxisLabel="Time (s)" yAxisLabel={`Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} />
+                                </div>
+                            </div>
+                            <div className="dashboardDataBottom">
+                                
+                            </div>
+                        </div>
                         <div className="reactorList">
                             <div className="reactorListTitleArea">
                                 <div className="reactorListTitle">
@@ -130,14 +154,6 @@ const Dashboard = () => {
                                     )
                                 })
                             }
-                        </div>
-                        <div className="dashboardData">
-                            <div className="dashDataTop">
-                                <div className="dashTempDisplay"></div>
-                                <div className="" style={{ maxWidth: "400px" }}>
-                                    <LineChart data={avgTemps} maxLength={300} title={`Average Reactor Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} xAxisLabel="Time (s)" yAxisLabel={`Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} />
-                                </div>
-                            </div>
                         </div>
                     </section>
                 </>

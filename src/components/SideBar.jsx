@@ -72,14 +72,15 @@ function SideBar(props) {
                     bgcolor: '#0B3954',
                     marginTop: '50px',
                     color: '#E0FF4F',
-                    width: '200px',
+                    width: '80%',
                     height: '56px',
                     fontFamily: 'Roboto Condensed',
                     fontWeight: 700,
-                    fontSize: '42px',
+                    fontSize: '3vw',
                     border: 3,
                     borderColor: '#FF6663',
                     borderRadius: '15px',
+                    overflow: 'hidden',
                 }}
                 onClick={handleReset}
 
@@ -92,13 +93,13 @@ function SideBar(props) {
                     marginTop: '30px',
                     fontFamily: 'Roboto Condensed',
                     height: '68px',
-                    width: '152px',
+                    width: '70%',
                     borderRadius: '15px',
                     fontWeight: 700,
-                    fontSize: '18.5px',
-                    lineHeight: '28px',
+                    fontSize: '1.5vw',
+                    lineHeight: '20px',
                     color: '#BFD7EA',
-
+                    overflow: 'hidden',
                 }}
                 onClick={handleCoolantOnAll}
 
@@ -110,14 +111,14 @@ function SideBar(props) {
                     marginTop: '30px',
                     fontFamily: 'Roboto Condensed',
                     height: '68px',
-                    width: '152px',
+                    width: '70%',
                     borderRadius: '15px',
                     fontWeight: 700,
-                    fontSize: '18.5px',
-                    lineHeight: '28px',
+                    fontSize: '1.5vw',
+                    lineHeight: '20px',
                     textAlign: 'center',
                     color: '#BFD7EA',
-
+                    overflow: 'hidden',
                 }}
                 onClick={handleCoolantOffAll}
 
