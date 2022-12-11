@@ -175,7 +175,7 @@
 /* Dashboard Data */
 .dashboardData {
     width: 75%;
-    height: auto;
+    height: 700px;
     background-color: #FF666380;
     display: flex;
     flex-direction: column;
@@ -259,6 +259,41 @@
     background-color: #262629;
     border-radius: 15px;
     margin: 2%;
+}
+
+.dashboardDataBottom {
+    width: 100%;
+    height: 325px;
+    margin-top: 3%;
+    background-color: #E0FF4F80;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashDataBottomLeft {
+    width: 60%;
+    height: 300px;
+    background-color: var(--darkBlue);
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.dashLogData {
+    width: 90%;
+    height: 200px;
+    background-color: #3a3a3a;
+}
+
+.dashDataBottomRight {
+    width: 40%;
+    height: 300px;
+    background-color: #0B395480;
+    margin: 1%;
 }
 
 /* ReactorCard List Styling */

@@ -3,6 +3,7 @@ import LineChart from "./LineChart"
 import SideBar from './SideBar'
 import TopBar from "../TopBar"
 import { Paper } from '@mui/material';
+import TerminalIcon from '@mui/icons-material/Terminal';
 
 const Dashboard = () => {
     const apiKey = "eb800069a59bb6c8" // My (Sam's) API Key
@@ -98,7 +99,7 @@ const Dashboard = () => {
                                             <p>Average Temperature</p>
                                         </div>
                                         <div className="dashTempData">
-                                            { avgTemp.toFixed(2) } {`°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()}`}
+                                            {avgTemp.toFixed(2)} {`°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()}`}
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +108,28 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             <div className="dashboardDataBottom">
-                                
+                                <div className="dashDataBottomLeft">
+                                    <div className="dashDataLogsTitle">
+                                        <TerminalIcon sx={{
+                                            color: 'white',
+                                        }}/>
+                                        <p>Server Logs</p>
+                                    </div>
+                                    <div className="dashLogData">
+                                        {
+                                            data.logs.map(log => {
+                                                return (
+                                                    <>
+                                                        <p>{log}</p>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                                <div className="dashDataBottomRight">
+
+                                </div>
                             </div>
                         </div>
                         <div className="reactorList">
