@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+/* Top Bar CSS */
+.topBar {
+display: flex;
+flex-wrap: wrap;
+background: rgba(255, 255, 255, 0.1);
+height: 148px;
+width: 100%;
+margin: 0;
+}
+
+.name {
+    display: flex;
+    background: #0B3954;
+    align-items: center;    
+    width: 350px;
+    height: 75px;
+    margin: 34px 0 66px 290px;
+    border-radius: 15px;
+
+}
+
+.nameText {
+    display: flex;
+    background: #0B3954;
+    color: #BFD7EA;
+    font-weight: 700;
+    font-size: 40px;
+    width: 250px;
+    height: 50px;
+    margin: 55px 0 60px 20px;
+    border: 0;
+
+}
+/* Top Bar CSS */
+
+/* Side Bar CSS */
+
+.sideBar {
+   position: fixed;
+   height: 100vh;
+   width: 15%;
+   background:#657a8a;
+   
+}
+
+.logo {
+    display: flex;
+    color: #E0FF4F;
+    background: #0B3954;
+    width: 100%;
+    height: 148px;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 40px;
+    align-items: center;
+}
+
+.divider {
+    display: flex;
+    margin: 40px 0 0 20px;
+    background: linear-gradient(90deg, #E0FF4F 0%, #FF6663 99.5%);
+    width: 200px;
+    height: 2px;
+    border-radius: 10px;
+}
+
+/* Side Bar CSS */
+
+/* Right Side Bar CSS */
+
+.rightSideBar {
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #5E6B74;
+  }
+  .rTBar{
+    position: sticky;
+    background: #0B3954;
+    width: 16%;
+    left: 1400px;
+    height: 100px;
+    margin-bottom: 0;
+  }
+  .reactorTitle {
+    
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 75px;
+    text-align: center;
+    background: linear-gradient(96.23deg, #FF6663 0%, #E0FF4F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  
+  
+/* Right Side Bar CSS */
+
