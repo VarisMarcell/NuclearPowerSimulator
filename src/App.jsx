@@ -16,10 +16,6 @@ const router = createBrowserRouter([
 ]) 
 
 function App() {
-<<<<<<< HEAD
-=======
-    const [data, setData] = useState({ reactors: [], plant_name: "" })
->>>>>>> d7349d8 (Worked on styling the main page css)
 
     const apiKey = "eb800069a59bb6c8" // My (Sam's) API Key
 
