@@ -81,7 +81,7 @@ const Dashboard = () => {
     return (
         <>
             <div className='wrapper'>
-                <SideBar />
+                <SideBar reactors={data.reactors}/>
                 <TopBar />
             </div>
             <div style={{ maxWidth: "400px" }}>
@@ -92,14 +92,14 @@ const Dashboard = () => {
                 data.reactors.map(reactor => {
                     return (
                         <div className="reactorCard">
-                            <div class="reactorCardName">
+                            <div className="reactorCardName">
                                 <p>{reactor.name}</p>
                             </div>
-                            <div class="reactorCardData">
-                                <div class="reactorDataLeft">Left</div>
-                                <div class="reactorDataRight">Right</div>
+                            <div className="reactorCardData">
+                                <div className="reactorDataLeft">Left</div>
+                                <div className="reactorDataRight">Right</div>
                             </div>
-                            <div class="reactorCardShutdown">Shutdown</div>
+                            <div className="reactorCardShutdown">Shutdown</div>
 
                             <h2>Temperature</h2>
                             <p>{reactor.temperature.amount.toFixed(2)}</p>
