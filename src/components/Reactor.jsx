@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import LineChart from "./LineChart.jsx"
+import Button from '@mui/material/Button'
 
 
 const Reactor = () => {
@@ -63,20 +64,104 @@ const Reactor = () => {
         <>
             {
                 reactor ? (
-                    <p>{reactor.name}</p>
+                    <>
+                        <p>{ reactor.name }</p>
+                        <div style={{ maxWidth: "400px" }}>
+                            <LineChart data={avgTemps} maxLength={300}
+                                title={`Average Reactor Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`}
+                                xAxisLabel="Time(s)"
+                                yAxisLabel={`Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`} />
+                        </div>
+                        <div className="reactorCard">
+                            <div className="reactorCardName">
+                            </div>
+                            <div className="reactorCardData">
+                                <div className="reactorDataLeft">Left</div>
+                                <div className="reactorDataRight">Right</div>
+                            </div>
+                            <div className="reactorCardShutdown">Shutdown</div>
+
+                            <h2>Temperature</h2>
+                            <p>{reactor.temperature.amount.toFixed(2)}</p>
+                            <p>{reactor.temperature.unit}</p>
+                            <p>{reactor.temperature.status}</p>
+                            <h2>Coolant</h2>
+                            <p>{reactor.coolant}</p>
+                            <h2>Output</h2>
+                            <p>{reactor.output.amount}</p>
+                            <p>{reactor.output.unit}</p>
+                            <h2>Fuel</h2>
+                            <p>{reactor.fuel.percentage.toFixed(2)}%</p>
+                            <h2>State</h2>
+                            <p>{reactor.state}</p>
+                            <h2>Control Rods</h2>
+                            <h3>In</h3>
+                            <p>{reactor.control_rods.in}</p>
+                            <h3>Out</h3>
+                            <p>{reactor.control_rods.out}</p>
+                        </div>
+
+                        <Button className="resetButton"
+                variant="contained"
+                sx={{
+                    bgcolor: '#0B3954',
+                    marginTop: '50px',
+                    color: '#E0FF4F',
+                    width: '200px',
+                    height: '56px',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 700,
+                    fontSize: '42px',
+                    border: 3,
+                    borderColor: '#FF6663',
+                    borderRadius: '15px',
+                }}
+
+            >RESET</Button>
+
+<Button variant="contained"
+                sx={{
+                    bgcolor: '#0B3954',
+                    marginTop: '30px',
+                    fontFamily: 'Roboto Condensed',
+                    height: '68px',
+                    width: '152px',
+                    borderRadius: '15px',
+                    fontWeight: 700,
+                    fontSize: '18.5px',
+                    lineHeight: '28px',
+                    color: '#BFD7EA',
+
+                }}
+    
+            >Coolant On</Button>
+
+            <Button variant="contained"
+                sx={{
+                    bgcolor: '#0B3954',
+                    marginTop: '30px',
+                    fontFamily: 'Roboto Condensed',
+                    height: '68px',
+                    width: '152px',
+                    borderRadius: '15px',
+                    fontWeight: 700,
+                    fontSize: '18.5px',
+                    lineHeight: '28px',
+                    textAlign: 'center',
+                    color: '#BFD7EA',
+
+                }}
+
+            >Coolant Off</Button>
+
+
+                        
+                    </>
                 ) : (
                     <p>Loading...</p>
                 )
-
-
             }
 
-            <div style={{ maxWidth: "400px" }}>
-                <LineChart data={avgTemps} maxLength={300}
-                    title={`Average Reactor Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`}
-                    xAxisLabel="Time(s)"
-                    yAxisLabel={`Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`} />
-            </div>
         </>
     )
 }
