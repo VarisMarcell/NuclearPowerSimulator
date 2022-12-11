@@ -50,6 +50,23 @@ const Reactor = () => {
         })
     }
 
+    const handleCoolantOn = async () => {
+            const coolantResponse = await fetch(`https://nuclear.dacoder.io/reactors/coolant/${reactor.id}?apiKey=${apiKey}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        coolant: "on"
+                    })
+                }
+            )
+            const jsonCoolantResponse = await coolantResponse.json()
+            console.log(jsonCoolantResponse)
+    }
+
     useEffect(() => {
         const timer = setInterval(fetchData, 1000)
 
@@ -61,7 +78,7 @@ const Reactor = () => {
     console.log(reactor)
 
     return (
-        <>
+        <section className="reactorRouterBackground">
             {
                 reactor ? (
                     <>
@@ -133,6 +150,7 @@ const Reactor = () => {
                     color: '#BFD7EA',
 
                 }}
+                onClick={handleCoolantOn}
     
             >Coolant On</Button>
 
@@ -162,7 +180,7 @@ const Reactor = () => {
                 )
             }
 
-        </>
+        </section>
     )
 }
 
