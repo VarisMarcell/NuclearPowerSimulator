@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import LineChart from "./LineChart"
 import SideBar from './SideBar'
-import TopBar from "../TopBar"
+import TopBar from "./TopBar"
 import { Paper } from '@mui/material';
 
 const Dashboard = () => {
@@ -82,7 +82,7 @@ const Dashboard = () => {
     return (
         <>
             <div className='wrapper'>
-                <TopBar />
+                <TopBar name={data.plant_name} />
                 <SideBar />
                 <>
                     <section className="dashboard">

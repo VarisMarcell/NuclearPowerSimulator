@@ -44,27 +44,155 @@ const Reactor = () => {
             }
         }))
 
+
+        console.log(reactors)
+
         setReactor(reactors[0])
         setAvgTemps(prevAvgTemps => {
             return [...prevAvgTemps, reactors[0].temperature.amount]
         })
     }
 
-    const handleCoolantOn = async () => {
-            const coolantResponse = await fetch(`https://nuclear.dacoder.io/reactors/coolant/${reactor.id}?apiKey=${apiKey}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        coolant: "on"
-                    })
+    const handleStart = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/start-reactor/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
                 }
-            )
-            const jsonCoolantResponse = await coolantResponse.json()
-            console.log(jsonCoolantResponse)
+
+            }
+        )
+
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+
+    }
+
+    const handleOff = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/controlled-shutdown/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+
+            }
+        )
+
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+
+    }
+
+    const handleCoolantOn = async () => {
+        const coolantResponse = await fetch(`https://nuclear.dacoder.io/reactors/coolant/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    coolant: "on"
+                })
+            }
+        )
+        const jsonCoolantResponse = await coolantResponse.json()
+        console.log(jsonCoolantResponse)
+    }
+
+    const handleCoolantOff = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/coolant/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    coolant: "off"
+                })
+            }
+        )
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+    }
+
+    const handleRefuel = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/refuel/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+    }
+
+    const handleMaintenance = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/maintenance/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+
+    }
+
+    const handleShutdown = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/emergency-shutdown/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+
+    }
+
+    const handleRaiseRod = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/raise-rod/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+
+    }
+
+    const handleDropRod = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/drop-rod/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+
     }
 
     useEffect(() => {
@@ -82,7 +210,8 @@ const Reactor = () => {
             {
                 reactor ? (
                     <>
-                        <p>{ reactor.name }</p>
+                        
+                        <p>{reactor.name}</p>
                         <div style={{ maxWidth: "400px" }}>
                             <LineChart data={avgTemps} maxLength={300}
                                 title={`Average Reactor Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`}
@@ -93,10 +222,7 @@ const Reactor = () => {
                             <div className="reactorCardName">
                             </div>
                             <div className="reactorCardData">
-                                <div className="reactorDataLeft">Left</div>
-                                <div className="reactorDataRight">Right</div>
                             </div>
-                            <div className="reactorCardShutdown">Shutdown</div>
 
                             <h2>Temperature</h2>
                             <p>{reactor.temperature.amount.toFixed(2)}</p>
@@ -119,61 +245,183 @@ const Reactor = () => {
                         </div>
 
                         <Button className="resetButton"
-                variant="contained"
-                sx={{
-                    bgcolor: '#0B3954',
-                    marginTop: '50px',
-                    color: '#E0FF4F',
-                    width: '200px',
-                    height: '56px',
-                    fontFamily: 'Roboto Condensed',
-                    fontWeight: 700,
-                    fontSize: '42px',
-                    border: 3,
-                    borderColor: '#FF6663',
-                    borderRadius: '15px',
-                }}
+                            variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '50px',
+                                color: '#E0FF4F',
+                                width: '200px',
+                                height: '56px',
+                                fontFamily: 'Roboto Condensed',
+                                fontWeight: 700,
+                                fontSize: '42px',
+                                border: 3,
+                                borderColor: '#FF6663',
+                                borderRadius: '15px',
+                            }}
 
-            >RESET</Button>
+                            onClick={handleStart}
 
-<Button variant="contained"
-                sx={{
-                    bgcolor: '#0B3954',
-                    marginTop: '30px',
-                    fontFamily: 'Roboto Condensed',
-                    height: '68px',
-                    width: '152px',
-                    borderRadius: '15px',
-                    fontWeight: 700,
-                    fontSize: '18.5px',
-                    lineHeight: '28px',
-                    color: '#BFD7EA',
+                        >Start</Button>
 
-                }}
-                onClick={handleCoolantOn}
-    
-            >Coolant On</Button>
+                        <Button className="resetButton"
+                            variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '50px',
+                                color: '#E0FF4F',
+                                width: '200px',
+                                height: '56px',
+                                fontFamily: 'Roboto Condensed',
+                                fontWeight: 700,
+                                fontSize: '42px',
+                                border: 3,
+                                borderColor: '#FF6663',
+                                borderRadius: '15px',
+                            }}
 
-            <Button variant="contained"
-                sx={{
-                    bgcolor: '#0B3954',
-                    marginTop: '30px',
-                    fontFamily: 'Roboto Condensed',
-                    height: '68px',
-                    width: '152px',
-                    borderRadius: '15px',
-                    fontWeight: 700,
-                    fontSize: '18.5px',
-                    lineHeight: '28px',
-                    textAlign: 'center',
-                    color: '#BFD7EA',
-
-                }}
-
-            >Coolant Off</Button>
+                            onClick={handleOff}
 
 
-                        
+
+                        >Off</Button>
+
+                        <Button className="resetButton"
+                            variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '50px',
+                                color: '#E0FF4F',
+                                width: '400px',
+                                height: '120px',
+                                fontFamily: 'Roboto Condensed',
+                                fontWeight: 700,
+                                fontSize: '42px',
+                                border: 3,
+                                borderColor: '#FF6663',
+                                borderRadius: '15px',
+                            }}
+
+                            onClick={handleShutdown}
+
+
+
+                        >Emergency Shutdown</Button>
+
+                        <Button variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '30px',
+                                fontFamily: 'Roboto Condensed',
+                                height: '68px',
+                                width: '152px',
+                                borderRadius: '15px',
+                                fontWeight: 700,
+                                fontSize: '18.5px',
+                                lineHeight: '28px',
+                                color: '#BFD7EA',
+
+                            }}
+                            onClick={handleCoolantOn}
+
+                        >Coolant On</Button>
+
+                        <Button variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '30px',
+                                fontFamily: 'Roboto Condensed',
+                                height: '68px',
+                                width: '152px',
+                                borderRadius: '15px',
+                                fontWeight: 700,
+                                fontSize: '18.5px',
+                                lineHeight: '28px',
+                                color: '#BFD7EA',
+
+                            }}
+                            onClick={handleCoolantOff}
+
+                        >Coolant Off</Button>
+
+
+                        <Button variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '30px',
+                                fontFamily: 'Roboto Condensed',
+                                height: '68px',
+                                width: '152px',
+                                borderRadius: '15px',
+                                fontWeight: 700,
+                                fontSize: '18.5px',
+                                lineHeight: '28px',
+                                textAlign: 'center',
+                                color: '#BFD7EA',
+
+                            }}
+                            onClick={handleMaintenance}
+
+                        >Maintance Mode</Button>
+
+                        <Button variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '30px',
+                                fontFamily: 'Roboto Condensed',
+                                height: '68px',
+                                width: '152px',
+                                borderRadius: '15px',
+                                fontWeight: 700,
+                                fontSize: '18.5px',
+                                lineHeight: '28px',
+                                color: '#BFD7EA',
+
+                            }}
+                            onClick={handleRefuel}
+
+                        >Refuel</Button>
+
+                        <Button variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '30px',
+                                fontFamily: 'Roboto Condensed',
+                                height: '68px',
+                                width: '152px',
+                                borderRadius: '15px',
+                                fontWeight: 700,
+                                fontSize: '18.5px',
+                                lineHeight: '28px',
+                                color: '#BFD7EA',
+
+                            }}
+                            onClick={handleRaiseRod}
+
+                        >Raise Rod</Button>
+
+                        <Button variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '30px',
+                                fontFamily: 'Roboto Condensed',
+                                height: '68px',
+                                width: '152px',
+                                borderRadius: '15px',
+                                fontWeight: 700,
+                                fontSize: '18.5px',
+                                lineHeight: '28px',
+                                color: '#BFD7EA',
+
+                            }}
+                            onClick={handleDropRod}
+
+                        >Drop Rod</Button>
+
+
+
+
+
                     </>
                 ) : (
                     <p>Loading...</p>
@@ -185,4 +433,4 @@ const Reactor = () => {
 }
 
 
-export default Reactor
+export default Reactor 
