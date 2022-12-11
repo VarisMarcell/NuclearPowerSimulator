@@ -101,6 +101,9 @@
     width: 15%;
     background: #657a8a;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .logo {
@@ -118,12 +121,14 @@
 }
 
 .divider {
+    margin-top: 30px;
     display: flex;
-    margin: 40px 0 0 20px;
     background: linear-gradient(90deg, #E0FF4F 0%, #FF6663 99.5%);
-    width: 200px;
+    width: 90%;
     height: 2px;
     border-radius: 10px;
+    align-self: center;
+    justify-self: center;
 }
 
 /* Side Bar CSS */
@@ -170,7 +175,7 @@
     width: 25%;
     height: 100%;
     position: relative;
-    left: 75%;
+    right: -75%;
     background-color: #5E6B74;
     display: flex;
     flex-direction: column;
@@ -180,24 +185,45 @@
 
 .reactorListTitleArea {
     width: 100%;
-    height: 40%;
-    background-color: #0B3954;
+    min-height: 150px;
+    background-color: transparent;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.reactorListTitle {
+    margin-top: 30px;
+    width: 100%;
+    height: 75px;
+    background-color: var(--darkBlue);
 }
 
 .reactorListTitleArea p {
+    font-family: 'Roboto Condensed', sans-serif;
+    line-height: 75px;
     width: 100%;
-    height: 50%;
-    font-size: 2.5vw;
-    font-weight: 700;
+    min-height: 50px;
+    font-size: 3.5vw;
+    font-weight: var(--thicc);
     text-align: center;
     background: linear-gradient(96.23deg, #FF6663 0%, #E0FF4F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.reactorListDivider {
+    position: relative;
+    height: 2px;
+    width: 90%;
+    /* justify-self: center; */
+    bottom: -25px;
+    background: linear-gradient(90deg, #E0FF4F 0%, #FF6663 99.5%);
+    border-radius: 15px;
 }
 
 .reactorCard {

@@ -91,6 +91,7 @@ const Dashboard = () => {
                                 <div className="reactorListTitle">
                                     <p>Reactors</p>
                                 </div>
+                                <div className="reactorListDivider"></div>
                             </div>
                             {
                                 data.reactors.map(reactor => {
