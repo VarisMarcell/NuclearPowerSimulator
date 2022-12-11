@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import LineChart from "./LineChart"
+import SideBar from './SideBar'
+import TopBar from "../TopBar"
 
 const Dashboard = () => {
     const apiKey = "eb800069a59bb6c8" // My (Sam's) API Key
@@ -11,8 +13,6 @@ const Dashboard = () => {
     })
 
     const [avgTemps, setAvgTemps] = useState([])
-
-    console.log(data)
 
     const fetchData = async () => {
         const rawData = await fetch(`https://nuclear.dacoder.io/reactors?apiKey=${apiKey}`)
@@ -80,6 +80,10 @@ const Dashboard = () => {
 
     return (
         <>
+            <div className='wrapper'>
+                <SideBar />
+                <TopBar />
+            </div>
             <div style={{ maxWidth: "400px" }}>
                 <LineChart data={avgTemps} maxLength={300} title={`Average Reactor Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} xAxisLabel="Time (s)" yAxisLabel={`Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} />
             </div>

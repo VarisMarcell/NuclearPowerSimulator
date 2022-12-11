@@ -2,12 +2,26 @@ import '/src/Home.css'
 import Button from '@mui/material/Button'
 
 function SideBar() {
+    const apiKey = "eb800069a59bb6c8"
+    const handleReset = async () => {
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/reset?apiKey=${apiKey}`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+    }
+
     return (
         <div className="sideBar">
             <div className="logo">
                 Nuclear Power Sim
             </div>
-            <Button className="resetButton" variant="contained"
+            <Button className="resetButton" 
+                variant="contained"
                 sx={{
                     bgcolor: '#0B3954',
                     marginTop: '50px',
@@ -21,6 +35,7 @@ function SideBar() {
                     borderColor: '#FF6663',
                     borderRadius: '15px',
                 }}
+                onClick={handleReset}
 
             >RESET</Button>
             <div className='divider'></div>

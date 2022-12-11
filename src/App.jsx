@@ -10,17 +10,15 @@ const router = createBrowserRouter([
         element: <Dashboard />
     },
     {
-        path: "/:id", 
+        path: "/:id",
         element: <Reactor />
     }
-]) 
+])
 
 function App() {
-
-    const apiKey = "eb800069a59bb6c8" // My (Sam's) API Key
-
     return (
         <RouterProvider router={router} />
+
     )
 }
 
