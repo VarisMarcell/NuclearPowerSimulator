@@ -7,6 +7,17 @@ CPTR-456
 Final Project - NuclearPowerSimulator
 
 ## Resources Used
+Materials UI
+
+Google Fonts
+- Josefin Sans
+- Roboto
+- Roboto Condensed
+- Roboto Mono
+
+Chart JS
+
+React Router
 
 ## DEVELOPMENT LOGS
 ### Wireframe
