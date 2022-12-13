@@ -53,6 +53,26 @@ const Reactor = () => {
         })
     }
 
+
+    const handleRenameReactor = async () => {
+        const newPlantName = prompt("What would you like to Change the Reactor Name to?")
+        const response = await fetch(`https://nuclear.dacoder.io/reactors/set-reactor-name/${reactor.id}?apiKey=${apiKey}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: newPlantName
+                })
+            }
+        )
+        const jsonResponse = await response.json()
+        console.log(jsonResponse)
+    
+    }
+
     const handleStart = async () => {
         const response = await fetch(`https://nuclear.dacoder.io/reactors/start-reactor/${reactor.id}?apiKey=${apiKey}`,
             {
@@ -212,6 +232,7 @@ const Reactor = () => {
                     <>
                         
                         <p>{reactor.name}</p>
+                        <h1 className='nameText' >{reactor.name}</h1>
                         <div style={{ maxWidth: "400px" }}>
                             <LineChart data={avgTemps} maxLength={300}
                                 title={`Average Reactor Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`}
@@ -243,6 +264,28 @@ const Reactor = () => {
                             <h3>Out</h3>
                             <p>{reactor.control_rods.out}</p>
                         </div>
+
+                        <Button className="resetButton"
+                variant="contained"
+                sx={{
+                    bgcolor: '#0B3954',
+                    marginTop: '10px',
+                    marginLeft: '20px',
+                    color: '#E0FF4F',
+                    width: '200px',
+                    height: '56px',
+                    marginBottom: '10px',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 700,
+                    fontSize: '42px',
+                    border: 3,
+                    borderColor: '#FF6663',
+                    borderRadius: '15px',
+                }}
+
+                onClick={handleRenameReactor}
+
+            >Rename</Button>
 
                         <Button className="resetButton"
                             variant="contained"
