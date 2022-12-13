@@ -86,7 +86,7 @@ const Dashboard = () => {
     return (
         <>
             <div className='wrapper'>
-                <TopBar name={data.plant_name} />
+                <TopBar name={data.plant_name} reactors = {data.reactors} />
                 <SideBar />
                 <>
                     <section className="dashboard">
