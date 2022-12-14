@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import LineChart from "./LineChart.jsx"
 import Button from '@mui/material/Button'
+import { useNavigate } from "react-router-dom"
 
 
 const Reactor = () => {
@@ -9,6 +10,7 @@ const Reactor = () => {
     const [avgTemps, setAvgTemps] = useState([])
     const apiKey = "eb800069a59bb6c8" // My (Sam's) API Key
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const fetchData = async () => {
         const rawData = await fetch(`https://nuclear.dacoder.io/reactors?apiKey=${apiKey}`)
@@ -70,7 +72,7 @@ const Reactor = () => {
         )
         const jsonResponse = await response.json()
         console.log(jsonResponse)
-    
+
     }
 
     const handleStart = async () => {
@@ -215,6 +217,10 @@ const Reactor = () => {
 
     }
 
+    const handleReturn = async () => {
+        navigate('/')
+    }
+
     useEffect(() => {
         const timer = setInterval(fetchData, 1000)
 
@@ -230,9 +236,8 @@ const Reactor = () => {
             {
                 reactor ? (
                     <>
-                        
-                        <p>{reactor.name}</p>
-                        <h1 className='nameText' >{reactor.name}</h1>
+
+                        <p className='nameText' >{reactor.name}</p>
                         <div style={{ maxWidth: "400px" }}>
                             <LineChart data={avgTemps} maxLength={300}
                                 title={`Average Reactor Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`}
@@ -266,26 +271,26 @@ const Reactor = () => {
                         </div>
 
                         <Button className="resetButton"
-                variant="contained"
-                sx={{
-                    bgcolor: '#0B3954',
-                    marginTop: '10px',
-                    marginLeft: '20px',
-                    color: '#E0FF4F',
-                    width: '200px',
-                    height: '56px',
-                    marginBottom: '10px',
-                    fontFamily: 'Roboto Condensed',
-                    fontWeight: 700,
-                    fontSize: '42px',
-                    border: 3,
-                    borderColor: '#FF6663',
-                    borderRadius: '15px',
-                }}
+                            variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '10px',
+                                marginLeft: '20px',
+                                color: '#E0FF4F',
+                                width: '200px',
+                                height: '56px',
+                                marginBottom: '10px',
+                                fontFamily: 'Roboto Condensed',
+                                fontWeight: 700,
+                                fontSize: '42px',
+                                border: 3,
+                                borderColor: '#FF6663',
+                                borderRadius: '15px',
+                            }}
 
-                onClick={handleRenameReactor}
+                            onClick={handleRenameReactor}
 
-            >Rename</Button>
+                        >Rename</Button>
 
                         <Button className="resetButton"
                             variant="contained"
@@ -462,7 +467,24 @@ const Reactor = () => {
                         >Drop Rod</Button>
 
 
+                        <Button className="returnToDashboard"
+                            variant="contained"
+                            sx={{
+                                bgcolor: '#0B3954',
+                                marginTop: '50px',
+                                color: '#E0FF4F',
+                                width: '200px',
+                                height: '56px',
+                                fontFamily: 'Roboto Condensed',
+                                fontWeight: 700,
+                                fontSize: '32px',
+                                border: 3,
+                                borderColor: '#FF6663',
+                                borderRadius: '15px',
+                            }}
 
+                            onClick={handleReturn}
+                        >DASHBOARD</Button>
 
 
                     </>

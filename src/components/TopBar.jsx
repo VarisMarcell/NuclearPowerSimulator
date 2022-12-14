@@ -14,8 +14,8 @@ const handleShutdownAll = async (reactors) => {
                 },
             }
         )
-        const jsonResponse = await response.json()
-        console.log(jsonResponse)
+        // const jsonResponse = await response.json()
+        console.log(response)
     }
 }
 
@@ -30,8 +30,8 @@ const handleEmergencyAll = async (reactors) => {
                 },
             }
         )
-        const jsonResponse = await response.json()
-        console.log(jsonResponse)
+        // const jsonResponse = await response.json()
+        console.log(response)
     }
 }
 
@@ -70,7 +70,7 @@ function TopBar(props) {
                     marginTop: '10px',
                     marginLeft: '20px',
                     color: '#E0FF4F',
-                    width: '200px',
+                    width: '14%',
                     height: '56px',
                     marginBottom: '10px',
                     fontFamily: 'Roboto Condensed',
@@ -93,7 +93,7 @@ function TopBar(props) {
                     marginLeft: '480px',
                     marginRight: 'auto',
                     color: '#E0FF4F',
-                    width: '200px',
+                    width: '14%',
                     height: '56px',
                     marginBottom: '10px',
                     fontFamily: 'Roboto Condensed',
@@ -116,7 +116,7 @@ function TopBar(props) {
                     marginTop: '-104px',
                     marginLeft: '875px',
                     color: '#E0FF4F',
-                    width: '200px',
+                    width: '14%',
                     height: '56px',
                     marginBottom: '10px',
                     fontFamily: 'Roboto Condensed',

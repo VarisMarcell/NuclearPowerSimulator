@@ -4,8 +4,12 @@ import SideBar from './SideBar'
 import TopBar from "./TopBar"
 import { Paper } from '@mui/material';
 import TerminalIcon from '@mui/icons-material/Terminal';
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+    const navigate = useNavigate()
+
+
     const apiKey = "eb800069a59bb6c8" // My (Sam's) API Key
 
     const [data, setData] = useState({
@@ -15,6 +19,7 @@ const Dashboard = () => {
     })
 
     const [avgTemp, setAvgTemp] = useState(22.22)
+    const [totalOutput, setTotalOutput] = useState(0)
     const [avgTemps, setAvgTemps] = useState([])
 
     const fetchData = async () => {
@@ -64,6 +69,12 @@ const Dashboard = () => {
         const averageTemp = jsonData.reactors.reduce((accumulator, reactor) => {
             return accumulator + reactor.temperature.amount
         }, 0) / jsonData.reactors.length
+
+        const totalOutput = jsonData.reactors.reduce((accumulator, reactor) => {
+            return accumulator + reactor.output.amount
+        }, 0) / 1000
+
+        setTotalOutput(totalOutput)
 
         setAvgTemp(averageTemp)
 
@@ -128,7 +139,9 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 <div className="dashDataBottomRight">
+                                    <p className="dashDataOutputTitle">Total Output</p>
 
+                                    <p className="dashDataOutputTotal">{ totalOutput.toFixed(2) } GW</p>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +156,9 @@ const Dashboard = () => {
                                 data.reactors.map(reactor => {
                                     return (
                                         <>
-                                            <div className="reactorCard">
+                                            <div className="reactorCard" onClick={() => {
+                                                navigate(`/${reactor.id}`)
+                                            }}>
                                                 <div className="reactorCardName">
                                                     <p>{reactor.name}</p>
                                                 </div>

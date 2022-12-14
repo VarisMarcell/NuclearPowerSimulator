@@ -45,6 +45,10 @@
     background-color: transparent;
     width: 100vw;
     height: 99vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* LOG CONSOLE STYLING */
@@ -97,6 +101,7 @@
     height: 70%;
     margin-left: 5%;
     border: none;
+    padding: 0;
     outline: none;
 }
 
@@ -176,7 +181,7 @@
 .dashboardData {
     width: 75%;
     height: 700px;
-    background-color: #FF666380;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
 }
@@ -185,7 +190,7 @@
     width: 100%;
     height: 275px;
     margin-top: 2%;
-    background-color: #E0FF4F80;
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -265,7 +270,7 @@
     width: 100%;
     height: 325px;
     margin-top: 3%;
-    background-color: #E0FF4F80;
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -281,20 +286,27 @@
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
+    color: white;
 }
 
 .dashLogData {
     width: 90%;
     height: 200px;
     background-color: #3a3a3a;
+    overflow: auto;
 }
 
 .dashDataBottomRight {
+    border-radius: 15px;
     width: 40%;
     height: 300px;
-    background-color: #0B395480;
+    background-color: #0B3954;
     margin: 1%;
+    color: var(--white);
+    font-size: 2.5rem;
+    font-weight: var(--chonk);
 }
+
 
 /* ReactorCard List Styling */
 .reactorList {
@@ -364,6 +376,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: 0.2s ease-in-out;
+}
+
+.reactorCard:hover {
+    cursor: pointer;
+    scale: 105%;
 }
 
 .reactorCardName {
