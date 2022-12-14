@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+.avgTempChart {
+    display: flex;
+    min-width: 50%;
+    background-color: #262629;
+    border-radius: 15px;
+    margin: 50px 0 0 350px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0  0 0 250px;
+    margin-bottom: 50px;
+    gap: 5px;
+    width: 62%;
+    justify-content: center;
+    align-items: center;
+}
+
+.reactorRouterBackground {
+    width: 100%;
+}
+
+.nameText {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: 48px;
+    padding: 0px;
+    margin: 0;
+    line-height: 50px;
+}
+
+.nameWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 100px 250px;
+    flex-direction: row;
+    width: 70%;
+}
+
+.reactorCard {
+    display: flex;
+    color: '#E0FF4F';
+    flex-wrap: wrap;
+    font-weight: 900;
+    margin: 0 0 20px 150px;
+    line-height: 0;
+    padding-bottom: 50px;
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
