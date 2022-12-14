@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react"
 import LineChart from "./LineChart"
-import SideBar from './SideBar'
 import TopBar from "./TopBar"
+<<<<<<< HEAD
 import { Paper } from '@mui/material';
 import TerminalIcon from '@mui/icons-material/Terminal';
+=======
+import { useNavigate } from "react-router-dom"
+import SideBar from "./SideBar"
+import '../App.css'
+
+>>>>>>> adrian/reactor-changes
 
 const Dashboard = () => {
     const apiKey = "eb800069a59bb6c8" // My (Sam's) API Key
@@ -82,108 +88,95 @@ const Dashboard = () => {
         }
     }, [])
 
+    const navigate = useNavigate()
 
     return (
         <>
             <div className='wrapper'>
-                <TopBar name={data.plant_name} reactors = {data.reactors} />
+                <TopBar name={data.plant_name} reactors={data.reactors} />
                 <SideBar />
-                <>
-                    <section className="dashboard">
-                        <div className="dashboardData">
-                            <div className="dashDataTop">
-                                <div className="dashTempDisplay">
-                                    <div className="dashTempLine"></div>
-                                    <div className="dashTempDisplay1">
-                                        <div className="dashTempTitle">
-                                            <p>Average Temperature</p>
-                                        </div>
-                                        <div className="dashTempData">
-                                            {avgTemp.toFixed(2)} {`°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()}`}
-                                        </div>
-                                    </div>
+            </section>
+            <div className="wrapper">
+                <section className="dashboard">
+                    <div className="dashboardData">
+                        <div className="dashDataTop">
+                            <div className="dashTempDisplay">
+                                <div className="dashTempLine"></div>
+                                <div className="dashTempDisplay1"></div>
+                                <div className="dashTempTitle">
+                                    <p>Average Temperature</p>
                                 </div>
-                                <div className="avgTempChart">
-                                    <LineChart data={avgTemps} maxLength={300} title={`Average Reactor Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} xAxisLabel="Time (s)" yAxisLabel={`Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} />
+                                <div className="dashTempData">
+                                    {avgTemp.toFixed(2)} {`°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()}`}
                                 </div>
                             </div>
-                            <div className="dashboardDataBottom">
-                                <div className="dashDataBottomLeft">
-                                    <div className="dashDataLogsTitle">
-                                        <TerminalIcon sx={{
-                                            color: 'white',
-                                        }}/>
-                                        <p>Server Logs</p>
-                                    </div>
-                                    <div className="dashLogData">
-                                        {
-                                            data.logs.map(log => {
-                                                return (
-                                                    <>
-                                                        <p>{log}</p>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                </div>
-                                <div className="dashDataBottomRight">
-
-                                </div>
+                            <div className="avgTempChart">
+                                <LineChart data={avgTemps} maxLength={300} title={`Average Reactor Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} xAxisLabel="Time (s)" yAxisLabel={`Temperature (°${data.reactors[0]?.temperature.unit.slice(0, 1).toUpperCase()})`} />
                             </div>
                         </div>
-                        <div className="reactorList">
-                            <div className="reactorListTitleArea">
-                                <div className="reactorListTitle">
-                                    <p>Reactors</p>
-                                </div>
-                                <div className="reactorListDivider"></div>
-                            </div>
-                            {
-                                data.reactors.map(reactor => {
-                                    return (
-                                        <>
-                                            <div className="reactorCard">
-                                                <div className="reactorCardName">
-                                                    <p>{reactor.name}</p>
-                                                </div>
-                                                <div className="reactorCardData">
-                                                    <div className="reactorDataLeft">Left</div>
-                                                    <div className="reactorDataRight">Right</div>
-                                                </div>
-                                                <div className="reactorCardShutdown">Shutdown</div>
+                    </div>
+                </section>
+            </div>
 
-                                                <h2>Temperature</h2>
-                                                <p>{reactor.temperature.amount.toFixed(2)}</p>
-                                                <p>{reactor.temperature.unit}</p>
-                                                <p>{reactor.temperature.status}</p>
-                                                <h2>Coolant</h2>
-                                                <p>{reactor.coolant}</p>
-                                                <h2>Output</h2>
-                                                <p>{reactor.output.amount}</p>
-                                                <p>{reactor.output.unit}</p>
-                                                <h2>Fuel</h2>
-                                                <p>{reactor.fuel.percentage.toFixed(2)}%</p>
-                                                <h2>State</h2>
-                                                <p>{reactor.state}</p>
-                                                <h2>Control Rods</h2>
-                                                <h3>In</h3>
-                                                <p>{reactor.control_rods.in}</p>
-                                                <h3>Out</h3>
-                                                <p>{reactor.control_rods.out}</p>
-                                            </div>
-                                        </>
-                                    )
-                                })
-                            }
-                        </div>
-                    </section>
-                </>
-
+            <div className="dashboardDataBottom">
 
             </div>
-        </>
+            <div className="reactorList">
+                <div className="reactorListTitleArea">
+                    <div className="reactorListTitle">
+                        <p>Reactors</p>
+                    </div>
+                    <div className="reactorListDivider"></div>
+                </div>
+                {
+                    data.reactors.map(reactor => {
+                        return (
+                            <>
+                                <div className="reactorCard" onClick={() => {
+                                    navigate(`/${reactor.id}`)
+
+                                }}>
+                                    <div className="reactorCardName">
+                                        <p>{reactor.name}</p>
+                                    </div>
+                                    <div className="reactorCardData">
+                                        <div className="reactorDataLeft">Left</div>
+                                        <div className="reactorDataRight">Right</div>
+                                    </div>
+                                    <div className="reactorCardShutdown">Shutdown</div>
+
+                                    <h2>Temperature</h2>
+                                    <p>{reactor.temperature.amount.toFixed(2)}</p>
+                                    <p>{reactor.temperature.unit}</p>
+                                    <p>{reactor.temperature.status}</p>
+                                    <h2>Coolant</h2>
+                                    <p>{reactor.coolant}</p>
+                                    <h2>Output</h2>
+                                    <p>{reactor.output.amount}</p>
+                                    <p>{reactor.output.unit}</p>
+                                    <h2>Fuel</h2>
+                                    <p>{reactor.fuel.percentage.toFixed(2)}%</p>
+                                    <h2>State</h2>
+                                    <p>{reactor.state}</p>
+                                    <h2>Control Rods</h2>
+                                    <h3>In</h3>
+                                    <p>{reactor.control_rods.in}</p>
+                                    <h3>Out</h3>
+                                    <p>{reactor.control_rods.out}</p>
+                                </div>
+                            </>
+                        )
+                    })
+                }
+            </div>
+        </div>
+        / <div>
+        </section>
     )
 }
+
+
+
+// Wasnt working
 
 export default Dashboard
