@@ -45,10 +45,10 @@
     background-color: transparent;
     width: 100vw;
     height: 99vh;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; */
 }
 
 /* LOG CONSOLE STYLING */
