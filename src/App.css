@@ -175,7 +175,7 @@
 /* Dashboard Data */
 .dashboardData {
     width: 75%;
-    height: 700px;
+    height: auto;
     background-color: #FF666380;
     display: flex;
     flex-direction: column;
@@ -183,7 +183,7 @@
 
 .dashDataTop {
     width: 100%;
-    height: 275px;
+    height: 40%;
     margin-top: 2%;
     background-color: #E0FF4F80;
     display: flex;
@@ -194,7 +194,7 @@
 
 .dashTempDisplay {
     width: 30%;
-    height: 250px;
+    height: 87%;
     background-color: #0B3954;
     border-radius: 15px;
     margin-left: 8%;
@@ -263,8 +263,8 @@
 
 .dashboardDataBottom {
     width: 100%;
-    height: 325px;
-    margin-top: 3%;
+    height: 53%;
+    margin-top: 2%;
     background-color: #E0FF4F80;
     display: flex;
     flex-direction: row;
