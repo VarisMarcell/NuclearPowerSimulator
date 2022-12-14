@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom"
+import { React } from 'react'
 import { useState, useEffect } from "react"
 import LineChart from "./LineChart.jsx"
 import Button from '@mui/material/Button'
+import { useNavigate } from "react-router-dom"
+import './reactor.css'
 
 
 const Reactor = () => {
@@ -53,6 +56,7 @@ const Reactor = () => {
         })
     }
 
+    const navigate = useNavigate();
 
     const handleRenameReactor = async () => {
         const newPlantName = prompt("What would you like to Change the Reactor Name to?")
@@ -70,7 +74,6 @@ const Reactor = () => {
         )
         const jsonResponse = await response.json()
         console.log(jsonResponse)
-    
     }
 
     const handleStart = async () => {
@@ -230,15 +233,245 @@ const Reactor = () => {
             {
                 reactor ? (
                     <>
-                        
-                        <p>{reactor.name}</p>
-                        <h1 className='nameText' >{reactor.name}</h1>
-                        <div style={{ maxWidth: "400px" }}>
-                            <LineChart data={avgTemps} maxLength={300}
+                        <Button className="homeButton"
+                                variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '60px',
+                                    color: '#E0FF4F',
+                                    width: '300px',
+                                    height: '56px',
+                                    marginBottom: '10px',
+                                    marginRight: '0px',
+                                    fontFamily: 'Roboto Condensed',
+                                    fontWeight: 700,
+                                    fontSize: '42px',
+                                    border: 3,
+                                    borderColor: '#FF6663',
+                                    borderRadius: '15px',
+                                }}
+
+                                onClick={() => {
+                                    navigate('/')
+
+                                }}
+
+                            >Dashboard</Button>
+
+                        <div className="nameWrapper">
+                            <h1 className='nameText' >{reactor.name}</h1>
+                            <Button className="renameButton"
+                                variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '60px',
+                                    color: '#E0FF4F',
+                                    width: '275px',
+                                    height: '56px',
+                                    marginBottom: '10px',
+                                    marginRight: '300px',
+                                    fontFamily: 'Roboto Condensed',
+                                    fontWeight: 700,
+                                    fontSize: '42px',
+                                    border: 3,
+                                    borderColor: '#FF6663',
+                                    borderRadius: '15px',
+                                }}
+
+                                onClick={handleRenameReactor}
+
+                            >Rename</Button>
+
+                        </div>
+
+
+                        <div className="avgTempChart" style={{ maxWidth: "400px" }}>
+                            <LineChart
+                                data={avgTemps}
+                                maxLength={300}
                                 title={`Average Reactor Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`}
                                 xAxisLabel="Time(s)"
                                 yAxisLabel={`Temperature (°${reactor?.temperature.unit.slice(0, 1).toUpperCase()})`} />
                         </div>
+
+                        <div className="buttonWrapper">
+
+                            <Button className="resetButton"
+                                variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '50px',
+                                    color: '#E0FF4F',
+                                    width: '200px',
+                                    height: '56px',
+                                    fontFamily: 'Roboto Condensed',
+                                    fontWeight: 700,
+                                    fontSize: '42px',
+                                    border: 3,
+                                    borderColor: '#FF6663',
+                                    borderRadius: '15px',
+                                }}
+
+                                onClick={handleStart}
+
+                            >Start</Button>
+
+                            <Button className="resetButton"
+                                variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '50px',
+                                    color: '#E0FF4F',
+                                    width: '400px',
+                                    height: '120px',
+                                    fontFamily: 'Roboto Condensed',
+                                    fontWeight: 700,
+                                    fontSize: '42px',
+                                    border: 3,
+                                    borderColor: '#FF6663',
+                                    borderRadius: '15px',
+                                }}
+
+                                onClick={handleShutdown}
+
+
+
+                            >Emergency Shutdown</Button>
+
+                            <Button className="resetButton"
+                                variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '50px',
+                                    color: '#E0FF4F',
+                                    width: '200px',
+                                    height: '56px',
+                                    fontFamily: 'Roboto Condensed',
+                                    fontWeight: 700,
+                                    fontSize: '42px',
+                                    border: 3,
+                                    borderColor: '#FF6663',
+                                    borderRadius: '15px',
+                                }}
+
+                                onClick={handleOff}
+
+
+
+                            >Off</Button>
+
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '30px',
+                                    fontFamily: 'Roboto Condensed',
+                                    height: '68px',
+                                    width: '152px',
+                                    borderRadius: '15px',
+                                    fontWeight: 700,
+                                    fontSize: '18.5px',
+                                    lineHeight: '28px',
+                                    color: '#BFD7EA',
+
+                                }}
+                                onClick={handleCoolantOn}
+
+                            >Coolant On</Button>
+
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '30px',
+                                    fontFamily: 'Roboto Condensed',
+                                    height: '68px',
+                                    width: '152px',
+                                    borderRadius: '15px',
+                                    fontWeight: 700,
+                                    fontSize: '18.5px',
+                                    lineHeight: '28px',
+                                    color: '#BFD7EA',
+
+                                }}
+                                onClick={handleCoolantOff}
+
+                            >Coolant Off</Button>
+
+
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '30px',
+                                    fontFamily: 'Roboto Condensed',
+                                    height: '68px',
+                                    width: '152px',
+                                    borderRadius: '15px',
+                                    fontWeight: 700,
+                                    fontSize: '18.5px',
+                                    lineHeight: '28px',
+                                    textAlign: 'center',
+                                    color: '#BFD7EA',
+
+                                }}
+                                onClick={handleMaintenance}
+
+                            >Maintance Mode</Button>
+
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '30px',
+                                    fontFamily: 'Roboto Condensed',
+                                    height: '68px',
+                                    width: '152px',
+                                    borderRadius: '15px',
+                                    fontWeight: 700,
+                                    fontSize: '18.5px',
+                                    lineHeight: '28px',
+                                    color: '#BFD7EA',
+
+                                }}
+                                onClick={handleRefuel}
+
+                            >Refuel</Button>
+
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '30px',
+                                    fontFamily: 'Roboto Condensed',
+                                    height: '68px',
+                                    width: '152px',
+                                    borderRadius: '15px',
+                                    fontWeight: 700,
+                                    fontSize: '18.5px',
+                                    lineHeight: '28px',
+                                    color: '#BFD7EA',
+
+                                }}
+                                onClick={handleRaiseRod}
+
+                            >Raise Rod</Button>
+
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: '#0B3954',
+                                    marginTop: '30px',
+                                    fontFamily: 'Roboto Condensed',
+                                    height: '68px',
+                                    width: '152px',
+                                    borderRadius: '15px',
+                                    fontWeight: 700,
+                                    fontSize: '18.5px',
+                                    lineHeight: '28px',
+                                    color: '#BFD7EA',
+
+                                }}
+                                onClick={handleDropRod}
+
+                            >Drop Rod</Button>
+
+                        </div>
+
                         <div className="reactorCard">
                             <div className="reactorCardName">
                             </div>
@@ -264,206 +497,6 @@ const Reactor = () => {
                             <h3>Out</h3>
                             <p>{reactor.control_rods.out}</p>
                         </div>
-
-                        <Button className="resetButton"
-                variant="contained"
-                sx={{
-                    bgcolor: '#0B3954',
-                    marginTop: '10px',
-                    marginLeft: '20px',
-                    color: '#E0FF4F',
-                    width: '200px',
-                    height: '56px',
-                    marginBottom: '10px',
-                    fontFamily: 'Roboto Condensed',
-                    fontWeight: 700,
-                    fontSize: '42px',
-                    border: 3,
-                    borderColor: '#FF6663',
-                    borderRadius: '15px',
-                }}
-
-                onClick={handleRenameReactor}
-
-            >Rename</Button>
-
-                        <Button className="resetButton"
-                            variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '50px',
-                                color: '#E0FF4F',
-                                width: '200px',
-                                height: '56px',
-                                fontFamily: 'Roboto Condensed',
-                                fontWeight: 700,
-                                fontSize: '42px',
-                                border: 3,
-                                borderColor: '#FF6663',
-                                borderRadius: '15px',
-                            }}
-
-                            onClick={handleStart}
-
-                        >Start</Button>
-
-                        <Button className="resetButton"
-                            variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '50px',
-                                color: '#E0FF4F',
-                                width: '200px',
-                                height: '56px',
-                                fontFamily: 'Roboto Condensed',
-                                fontWeight: 700,
-                                fontSize: '42px',
-                                border: 3,
-                                borderColor: '#FF6663',
-                                borderRadius: '15px',
-                            }}
-
-                            onClick={handleOff}
-
-
-
-                        >Off</Button>
-
-                        <Button className="resetButton"
-                            variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '50px',
-                                color: '#E0FF4F',
-                                width: '400px',
-                                height: '120px',
-                                fontFamily: 'Roboto Condensed',
-                                fontWeight: 700,
-                                fontSize: '42px',
-                                border: 3,
-                                borderColor: '#FF6663',
-                                borderRadius: '15px',
-                            }}
-
-                            onClick={handleShutdown}
-
-
-
-                        >Emergency Shutdown</Button>
-
-                        <Button variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '30px',
-                                fontFamily: 'Roboto Condensed',
-                                height: '68px',
-                                width: '152px',
-                                borderRadius: '15px',
-                                fontWeight: 700,
-                                fontSize: '18.5px',
-                                lineHeight: '28px',
-                                color: '#BFD7EA',
-
-                            }}
-                            onClick={handleCoolantOn}
-
-                        >Coolant On</Button>
-
-                        <Button variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '30px',
-                                fontFamily: 'Roboto Condensed',
-                                height: '68px',
-                                width: '152px',
-                                borderRadius: '15px',
-                                fontWeight: 700,
-                                fontSize: '18.5px',
-                                lineHeight: '28px',
-                                color: '#BFD7EA',
-
-                            }}
-                            onClick={handleCoolantOff}
-
-                        >Coolant Off</Button>
-
-
-                        <Button variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '30px',
-                                fontFamily: 'Roboto Condensed',
-                                height: '68px',
-                                width: '152px',
-                                borderRadius: '15px',
-                                fontWeight: 700,
-                                fontSize: '18.5px',
-                                lineHeight: '28px',
-                                textAlign: 'center',
-                                color: '#BFD7EA',
-
-                            }}
-                            onClick={handleMaintenance}
-
-                        >Maintance Mode</Button>
-
-                        <Button variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '30px',
-                                fontFamily: 'Roboto Condensed',
-                                height: '68px',
-                                width: '152px',
-                                borderRadius: '15px',
-                                fontWeight: 700,
-                                fontSize: '18.5px',
-                                lineHeight: '28px',
-                                color: '#BFD7EA',
-
-                            }}
-                            onClick={handleRefuel}
-
-                        >Refuel</Button>
-
-                        <Button variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '30px',
-                                fontFamily: 'Roboto Condensed',
-                                height: '68px',
-                                width: '152px',
-                                borderRadius: '15px',
-                                fontWeight: 700,
-                                fontSize: '18.5px',
-                                lineHeight: '28px',
-                                color: '#BFD7EA',
-
-                            }}
-                            onClick={handleRaiseRod}
-
-                        >Raise Rod</Button>
-
-                        <Button variant="contained"
-                            sx={{
-                                bgcolor: '#0B3954',
-                                marginTop: '30px',
-                                fontFamily: 'Roboto Condensed',
-                                height: '68px',
-                                width: '152px',
-                                borderRadius: '15px',
-                                fontWeight: 700,
-                                fontSize: '18.5px',
-                                lineHeight: '28px',
-                                color: '#BFD7EA',
-
-                            }}
-                            onClick={handleDropRod}
-
-                        >Drop Rod</Button>
-
-
-
-
 
                     </>
                 ) : (
